@@ -78,6 +78,13 @@ Each sample contains two images for the same tile:
 - **SWIR composite (B12-B8-B4):** water-sensitive view for separating open
   water, saturated soil, wet vegetation, and dry land.
 
+Example dataset sample from `gianyar_bali/p01_s01_t22`
+(`2025-11-15T09:00:00+00:00`, 5 km tile):
+
+| RGB composite | SWIR composite |
+|---|---|
+| ![Bali flood dataset RGB example](./assets/bali_dataset_example_rgb.png) | ![Bali flood dataset SWIR example](./assets/bali_dataset_example_swir.png) |
+
 Metadata is also stored beside each sample:
 
 - Bali region id.
@@ -656,6 +663,8 @@ artifacts are available.
     train_dashboard.py
   assets/
     bali_adm2.geojson
+    bali_dataset_example_rgb.png
+    bali_dataset_example_swir.png
     bali_flood_monitoring.png
     bali_flood_monitoring_video.mp4
   configs/
