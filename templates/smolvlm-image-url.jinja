@@ -1,0 +1,2 @@
+<|im_start|>{% for message in messages %}{{ message['role'] | capitalize }}{% if message['content'] is string %}: {{ message['content'] }}{% else %}:{% for line in message['content'] %}{% if line['type'] == 'text' %}{{ line['text'] }}{% elif line['type'] == 'image' or line['type'] == 'image_url' or line['type'] == 'media_marker' %}{{ '<__media__>' }}{% endif %}{% endfor %}{% endif %}<end_of_utterance>
+{% endfor %}{% if add_generation_prompt %}Assistant:{% endif %}

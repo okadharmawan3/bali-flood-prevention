@@ -1,0 +1,23 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+data/
+evals/
+outputs/
+bali_simulation.db
+simulation_images/
+.tmp_launch_logs/
+*.log
+.tmp_*
+/package-lock.json
+
+# Local dependency clones. Clone these when needed; do not vendor them here.
+SimSat/
+leap-finetune/
+llama.cpp/
+
+# Frontend generated dependencies/build output.
+frontend/node_modules/
+frontend/dist/

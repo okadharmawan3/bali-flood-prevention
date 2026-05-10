@@ -1,0 +1,596 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #e5edf5;
+  background: #0f1419;
+  overflow: hidden;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  color: #f8fafc;
+  background: #2563eb;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.app-shell {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: clamp(300px, 22vw, 420px) minmax(0, 1fr);
+  background: #0f1419;
+}
+
+.left-rail {
+  min-height: 0;
+  height: 100vh;
+  overflow: hidden;
+  padding: 16px;
+  display: grid;
+  grid-template-rows: auto minmax(180px, 0.9fr) auto minmax(240px, auto);
+  gap: 12px;
+  border-right: 1px solid #27313d;
+  background: #151b22;
+}
+
+.brand-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand-bar h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.brand-bar span {
+  color: #93a4b7;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.globe-panel,
+.telemetry-panel,
+.controls-panel {
+  border: 1px solid #2a3542;
+  border-radius: 8px;
+  background: #1a222b;
+}
+
+.globe-panel {
+  min-height: 0;
+  overflow: hidden;
+  aspect-ratio: 1 / 0.82;
+}
+
+.globe-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000000;
+}
+
+.globe-view {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.globe-view .cesium-widget,
+.globe-view .cesium-widget canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.globe-status {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  color: #c8d4e3;
+  background: rgba(0, 0, 0, 0.72);
+  font-size: 13px;
+  text-align: center;
+}
+
+.satellite-preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #07111b;
+}
+
+.satellite-map {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sat-map-bg {
+  fill: #071827;
+}
+
+.sat-grid-line {
+  stroke: rgba(148, 163, 184, 0.2);
+  stroke-width: 0.8;
+}
+
+.sat-landmass {
+  fill: #28455f;
+  stroke: rgba(195, 211, 225, 0.44);
+  stroke-width: 1.2;
+}
+
+.sat-trail-dot {
+  fill: #67e8f9;
+}
+
+.sat-current-dot {
+  fill: #22d3ee;
+  stroke: #ffffff;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.9));
+}
+
+.satellite-caption {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 9px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 8px;
+  background: rgba(8, 13, 19, 0.82);
+  color: #dce7f3;
+  font-size: 12px;
+}
+
+.satellite-caption span {
+  color: #9fb0c4;
+}
+
+.telemetry-panel,
+.controls-panel {
+  padding: 14px;
+  min-height: 0;
+  overflow: auto;
+}
+
+.telemetry-panel h2,
+.controls-panel h2 {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #dce7f3;
+}
+
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.telemetry-grid > div {
+  padding: 10px;
+  border: 1px solid #2b3745;
+  border-radius: 8px;
+  background: #121920;
+}
+
+.telemetry-grid .wide {
+  grid-column: 1 / -1;
+}
+
+.label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #8ea0b3;
+}
+
+.value {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+  color: #eef6ff;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+}
+
+.telemetry-panel p {
+  margin: 0;
+  color: #91a4b8;
+  font-size: 13px;
+}
+
+.controls-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.controls-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.controls-form input,
+.map-toolbar select {
+  width: 100%;
+  border: 1px solid #344254;
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: #edf5ff;
+  background: #111820;
+}
+
+.controls-form input:focus,
+.map-toolbar select:focus,
+.timeline-control input:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+}
+
+.button-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.button-row button,
+.modal-actions button,
+.timeline-control button {
+  min-height: 36px;
+  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.button-row button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.button-row button:first-child {
+  background: #15803d;
+}
+
+.button-row button:nth-child(2) {
+  background: #b45309;
+}
+
+.button-row button:nth-child(3) {
+  background: #b91c1c;
+}
+
+.map-panel {
+  min-width: 0;
+  min-height: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.map-toolbar {
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: minmax(320px, 520px) minmax(360px, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid #27313d;
+  background: #111820;
+}
+
+.toolbar-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.timeline-control {
+  display: grid;
+  grid-template-columns: 92px minmax(160px, 1fr) minmax(220px, 320px);
+  align-items: center;
+  gap: 12px;
+}
+
+.timeline-control button {
+  background: #0f766e;
+}
+
+.timeline-control input {
+  width: 100%;
+  accent-color: #14b8a6;
+}
+
+.timeline-label {
+  min-width: 0;
+}
+
+.timeline-label strong,
+.timeline-label span {
+  display: block;
+}
+
+.timeline-label strong {
+  font-size: 13px;
+}
+
+.timeline-label span {
+  margin-top: 3px;
+  color: #9fb0c4;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.map-surface {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  background: #0f1922;
+}
+
+.bali-map {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.map-water {
+  fill: #0b2230;
+}
+
+.area-shape {
+  stroke: #d8e3ee;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.88;
+  transition: opacity 140ms ease, filter 140ms ease;
+}
+
+.area-shape:hover {
+  opacity: 1;
+  filter: brightness(1.16);
+}
+
+.map-legend {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #324153;
+  border-radius: 8px;
+  background: rgba(17, 24, 32, 0.9);
+  color: #dbe6f2;
+  font-size: 12px;
+}
+
+.map-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.map-legend i {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.map-tooltip {
+  position: fixed;
+  z-index: 40;
+  pointer-events: none;
+  min-width: 180px;
+  padding: 10px 12px;
+  border: 1px solid #3b4b5f;
+  border-radius: 8px;
+  background: rgba(10, 15, 21, 0.94);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
+}
+
+.map-tooltip strong,
+.map-tooltip span {
+  display: block;
+}
+
+.map-tooltip strong {
+  margin-bottom: 4px;
+  color: #ffffff;
+}
+
+.map-tooltip span {
+  color: #b9c7d8;
+  font-size: 12px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(4, 8, 12, 0.62);
+}
+
+.image-modal {
+  width: min(960px, 96vw);
+  max-height: 92vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  border: 1px solid #35465a;
+  border-radius: 8px;
+  background: #121a23;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #283544;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.modal-header span {
+  display: block;
+  margin-top: 3px;
+  color: #9fb0c3;
+  font-size: 12px;
+}
+
+.icon-button {
+  width: 34px;
+  height: 34px;
+  background: #273443;
+}
+
+.image-grid {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 14px;
+  overflow: auto;
+}
+
+.image-grid figure {
+  margin: 0;
+  min-width: 0;
+  border: 1px solid #2f3e50;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0d141b;
+}
+
+.image-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.image-grid figcaption {
+  padding: 8px 10px;
+  color: #c8d4e3;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 14px;
+  border-top: 1px solid #283544;
+}
+
+.modal-actions button:first-child {
+  background: #334155;
+}
+
+.modal-actions button:last-child {
+  background: #0f766e;
+}
+
+.modal-empty,
+.empty-state {
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+  padding: 28px;
+  color: #a8b8c8;
+}
+
+@media (max-width: 1180px) {
+  .app-shell {
+    grid-template-columns: clamp(280px, 32vw, 340px) minmax(0, 1fr);
+  }
+
+  .left-rail {
+    padding: 10px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 820px) {
+  .toolbar-group,
+  .image-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-shell {
+    grid-template-columns: 260px minmax(360px, 1fr);
+    min-width: 620px;
+  }
+
+  .map-toolbar {
+    grid-template-columns: minmax(220px, 340px) minmax(260px, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .timeline-control {
+    grid-template-columns: 76px minmax(120px, 1fr) minmax(140px, 220px);
+  }
+}
