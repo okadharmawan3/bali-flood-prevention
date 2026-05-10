@@ -681,36 +681,3 @@ artifacts are available.
   uv.lock
   README.md
 ```
-
-Generated or local-only folders are intentionally ignored by Git:
-
-- `.venv/`
-- `.env`
-- `data/`
-- `evals/`
-- `outputs/`
-- `simulation_images/`
-- `bali_simulation.db`
-- Python caches and pytest caches
-- Local dependency clones: `SimSat/`, `leap-finetune/`, and `llama.cpp/`
-- Frontend generated folders: `frontend/node_modules/` and `frontend/dist/`
-
-## Before Pushing to Git
-
-Use this checklist before publishing the project:
-
-- README screenshot exists at `assets/bali_flood_monitoring.png`.
-- `.env` is not committed.
-- Large generated artifacts are not committed unless intentionally released
-  elsewhere.
-- `uv.lock` and `pyproject.toml` are committed for reproducible setup.
-- Tests pass with `uv run python -m unittest discover -s tests`.
-- Dashboard API starts with `uv run uvicorn app.simulation_api:app --reload --port 8010`.
-- The frontend starts from `frontend/`.
-- Any Hugging Face repo names are changed from placeholders to your account.
-
-Recommended repository description:
-
-```text
-Compact VLM satellite monitoring system for Bali flood-risk prevention.
-```
