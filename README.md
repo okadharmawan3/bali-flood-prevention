@@ -24,7 +24,6 @@ stored, evaluated, replayed, and inspected by local analysts.
 - [Simulation Dashboard](#simulation-dashboard)
 - [Quickstart](#quickstart)
 - [Repository Structure](#repository-structure)
-- [Before Pushing to Git](#before-pushing-to-git)
 
 ## Project Goal
 
@@ -535,6 +534,10 @@ uv run scripts/push_gguf_to_hf.py `
 The dashboard uses precomputed predictions from `bali_simulation.db`. During
 playback, the UI reads database aggregates rather than running inference live.
 
+<video src="./assets/bali_flood_monitoring_video.mp4" controls muted loop playsinline>
+  Bali Flood Prevention Monitoring dashboard replay
+</video>
+
 ### Build Replay DB
 
 Start SimSat first, then run:
@@ -654,6 +657,7 @@ artifacts are available.
   assets/
     bali_adm2.geojson
     bali_flood_monitoring.png
+    bali_flood_monitoring_video.mp4
   configs/
     bali_flood_finetune_modal.yaml
   frontend/
