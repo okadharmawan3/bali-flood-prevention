@@ -1,4 +1,4 @@
-# Bali Flood Prevention Monitoring
+# Bali Flood Prevention Monitoring Using using a Compact Vision-Language Modell and Sentinel-2 Satellite Images
 
 An end-to-end flood-risk monitoring project for Bali, Indonesia, built with
 Sentinel-2 satellite imagery, compact vision-language models, local simulation,
